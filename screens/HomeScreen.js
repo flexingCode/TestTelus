@@ -1,10 +1,27 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import React, {useState} from 'react'
+import { StyleSheet, View, Text, FlatList, Button } from 'react-native'
 
 export default function HomeScreen({ navigation }) {
+
+
+
+  const [toDoList, setTodoList] = useState([]);
+
+
+
   return (
     <View style={styles.container}>
-      {/* Here add your Code for Task List and button to navigate to add new tasks, also remember todo's should be able to be deleted. */}
+      <Text>
+        To Do's
+      </Text>
+
+<Button onPress={() => navigation.navigate('AddTask', {list: toDoList})} title='Add'></Button>
+      <FlatList
+      renderItem={(todo, index) => {
+        <Text>{todo.title}</Text>
+      }}
+        data={toDoList}
+      />
     </View>
   )
 }

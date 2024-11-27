@@ -1,11 +1,22 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, TextInput, Button } from 'react-native'
 
 export default function AddTaskScreen({ route, navigation }) {
 
+  const {list} = route.params;
+
+  const [title, setTitle] = useState('');
+
+  const createTast = () => {
+    list.push(title);
+  }
+
+
   return (
     <View style={styles.container}>
-      {/* Here Add your Code to add Tasks */}
+      <Button onPress={() => navigation.goBack()} title='Back'></Button>
+      <TextInput value={title} onChangeText={() => (setTitle(title))} />
+      <Button onPress={() => createTast()} title='Save'></Button>
     </View>
   )
 }
